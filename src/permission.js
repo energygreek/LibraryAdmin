@@ -16,7 +16,6 @@ router.beforeEach(async(to, from, next) => {
 
   // set page title
   document.title = getPageTitle(to.meta.title)
-
   // determine whether the user has logged in
   const hasToken = getToken()
 
@@ -27,13 +26,17 @@ router.beforeEach(async(to, from, next) => {
       NProgress.done()
     } else {
       const hasGetUserInfo = store.getters.name
-      if (hasGetUserInfo) {
+      var arr = Object.keys(hasGetUserInfo)
+      if (arr.length !== 0) {
         next()
       } else {
         try {
           // get user info
           await store.dispatch('user/getInfo')
-
+          // await store.dispatch('user/getAllUsers')
+          // await store.dispatch('user/getAllJobs')
+          // await store.dispatch('user/getAllDepartments')
+          // await store.dispatch('user/getOrangizations')
           next()
         } catch (error) {
           // remove token and go to login page to re-login
