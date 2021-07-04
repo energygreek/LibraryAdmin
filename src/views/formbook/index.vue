@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { getBookById } from '@/api/table'
+import { getBookInfo, updateBookInfo } from '@/api/table'
 export default {
   data() {
     return {
@@ -44,25 +44,35 @@ export default {
         publish_date: '',
         desc: ''
       },
+      listQuery: {
+        id: undefined
+      },
       loading: false
     }
   },
   created() {
-    var id = this.$route.params.id
-    if (id) {
-      this.getBookInfo(id)
+    this.listQuery.id = this.$route.params.id
+    if (this.listQuery.id != null) {
+      this.getBookInfo()
     }
   },
   methods: {
-    getBookInfo(id) {
+    getBookInfo() {
       this.loading = true
-      getBookById(id).then((response) => {
+      getBookInfo(this.listQuery).then((response) => {
         this.form = response.data
         this.loading = false
       })
     },
     onSubmit() {
-      this.$message('submit!')
+      this.loading = true
+      updateBookInfo(this.form).then((response) => {
+        if (response.code === 20000) {
+          this.$message('sucess!')
+        } else {
+          this.$message('failed!')
+        }
+      })
     },
     onCancel() {
       this.$message({

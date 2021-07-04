@@ -8,17 +8,11 @@ export function getList(params) {
   })
 }
 
-export function getBookById(id) {
+export function getBookInfo(params) {
   return request({
-    url: '/book/info/' + id,
-    method: 'get'
-  })
-}
-
-export function deleteBookById(id) {
-  return request({
-    url: '/book/delete/' + id,
-    method: 'get'
+    url: '/book/info',
+    method: 'get',
+    params
   })
 }
 
@@ -27,5 +21,13 @@ export function updateBookInfo(data) {
     url: '/book/update',
     method: 'post',
     data
+  })
+}
+
+export function deleteBook(params) {
+  return request({
+    url: '/book/delete',
+    method: 'get',
+    params
   })
 }
