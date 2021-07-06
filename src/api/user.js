@@ -22,3 +22,27 @@ export function logout() {
     method: 'post'
   })
 }
+
+export function getList(params) {
+  return request({
+    url: '/user/list',
+    method: 'get',
+    params
+  })
+}
+
+export function updateUserInfo(data) {
+  return request({
+    url: '/user/update',
+    method: 'post',
+    data
+  })
+}
+
+export function deleteUser(params) {
+  return request({
+    url: '/user/delete',
+    method: 'get',
+    params
+  })
+}

@@ -60,11 +60,11 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/book/table',
     name: 'Books',
-    meta: { title: '图书', icon: 'el-icon-s-help' },
+    meta: { title: '图书管理', icon: 'el-icon-s-help' },
     children: [
       {
         path: 'table',
-        name: 'Table',
+        name: 'BookTable',
         component: () => import('@/views/table/index'),
         meta: { title: '图书列表', icon: 'table' }
       }
@@ -76,13 +76,41 @@ export const constantRoutes = [
     component: Layout,
     redirect: '/book/table',
     name: 'Users',
-    meta: { title: '用户', icon: 'el-icon-s-help' },
+    meta: { title: '用户管理', icon: 'el-icon-user' },
     children: [
       {
         path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: '用户列表', icon: 'table' }
+        name: 'UserTable',
+        component: () => import('@/views/user/index'),
+        meta: { title: '用户列表', icon: 'user' }
+      }
+    ]
+  },
+
+  {
+    path: '/bookio',
+    component: Layout,
+    redirect: '/bookio/table',
+    name: 'BookIO',
+    meta: { title: '借阅管理', icon: 'el-icon-s-claim' },
+    children: [
+      {
+        path: 'table',
+        name: 'BookIOTable',
+        component: () => import('@/views/user/index'),
+        meta: { title: '借还记录', icon: 'el-icon-document' }
+      },
+      {
+        path: 'otable',
+        name: 'BookOTable',
+        component: () => import('@/views/formrent/index'),
+        meta: { title: '借阅登记', icon: 'table' }
+      },
+      {
+        path: 'itable',
+        name: 'BookITable',
+        component: () => import('@/views/formreturn/index'),
+        meta: { title: '归还登记', icon: 'table' }
       }
     ]
   },
@@ -110,17 +138,6 @@ export const constantRoutes = [
         name: 'Book',
         component: () => import('@/views/formbook/index'),
         meta: { title: '图书新增', icon: 'form' }
-      }
-    ]
-  },
-
-  {
-    path: 'external-link',
-    component: Layout,
-    children: [
-      {
-        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-        meta: { title: 'External Link', icon: 'link' }
       }
     ]
   },
