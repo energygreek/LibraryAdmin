@@ -2,7 +2,7 @@
   <div class="app-container">
 
     <div class="filter-container" style="margin-bottom: 10px;">
-      <el-input v-model="listQuery.name" placeholder="书名" style="width: 200px; margin-right: 5px" class="filter-item" @keyup.enter.native="fetchData" />
+      <el-input v-model="listQuery.title" placeholder="用户名" style="width: 200px; margin-right: 5px" class="filter-item" @keyup.enter.native="handleFilter" />
       <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="fetchData">
         搜索
       </el-button>
@@ -24,24 +24,34 @@
           {{ scope.$index }}
         </template>
       </el-table-column>
-      <el-table-column label="条码" width="300">
+      <el-table-column label="编号" width="100">
         <template slot-scope="scope">
-          {{ scope.row.code }}
+          {{ scope.row.id }}
         </template>
       </el-table-column>
-      <el-table-column label="书名" width="300">
+      <el-table-column label="读者编号" width="200">
         <template slot-scope="scope">
-          {{ scope.row.name }}
+          {{ scope.row.username }}
         </template>
       </el-table-column>
-      <el-table-column label="作者" width="110" align="center">
+      <el-table-column label="图书编号" width="200">
         <template slot-scope="scope">
-          <span>{{ scope.row.author }}</span>
+          {{ scope.row.username }}
         </template>
       </el-table-column>
-      <el-table-column label="简介" width="110" align="center">
+      <el-table-column label="借书时间" width="200">
         <template slot-scope="scope">
-          {{ scope.row.desc }}
+          {{ scope.row.username }}
+        </template>
+      </el-table-column>
+      <el-table-column label="借书数量" width="200">
+        <template slot-scope="scope">
+          {{ scope.row.username }}
+        </template>
+      </el-table-column>
+      <el-table-column label="还书时间" width="200">
+        <template slot-scope="scope">
+          {{ scope.row.username }}
         </template>
       </el-table-column>
       <el-table-column class-name="status-col" label="状态" width="110" align="center">
@@ -64,7 +74,7 @@
 </template>
 
 <script>
-import { getList, deleteBook } from '@/api/book'
+import { getList, deleteUser } from '@/api/user'
 
 export default {
   filters: {
@@ -82,7 +92,7 @@ export default {
       importanceOptions: [],
       listQuery: {
         id: undefined,
-        name: undefined,
+        username: undefined,
         page: 1
       },
       list: null,
@@ -100,7 +110,7 @@ export default {
       this.$router.push('/form/book/')
     },
     handleDelete(row) {
-      deleteBook({ 'id': row.id }).then(response => {
+      deleteUser({ 'id': row.id }).then(response => {
         this.fetchData()
         this.listLoading = false
       })

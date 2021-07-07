@@ -97,7 +97,7 @@ export const constantRoutes = [
       {
         path: 'table',
         name: 'BookIOTable',
-        component: () => import('@/views/user/index'),
+        component: () => import('@/views/bookio/index'),
         meta: { title: '借还记录', icon: 'el-icon-document' }
       },
       {

@@ -31,3 +31,11 @@ export function deleteBook(params) {
     params
   })
 }
+
+export function getHistory(params) {
+  return request({
+    url: '/book/history',
+    method: 'get',
+    params
+  })
+}

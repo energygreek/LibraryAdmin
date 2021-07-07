@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { getBookInfo, updateBookInfo } from '@/api/table'
+import { getBookInfo, updateBookInfo } from '@/api/book'
 export default {
   data() {
     return {
